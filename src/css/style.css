@@ -24,13 +24,16 @@ section {
 }
 
 .search-box {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  padding-bottom: 30px;
-  padding-top: 30px;
-  background-color: rgb(23, 81, 255);
+    position: sticky;
+    top: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding-bottom: 20px;
+    padding-top: 20px;
+    background-color: rgb(23, 81, 255);
+    z-index: 1000;
 }
 
 .logo-name {
