@@ -93,7 +93,10 @@ function updateImagesList(markup) {
     if (window.simpleLightboxInstance) {
       window.simpleLightboxInstance.destroy();
     }
-    window.simpleLightboxInstance = new SimpleLightbox(apiImages, {});
+    window.simpleLightboxInstance = new SimpleLightbox(apiImages, {
+      sourceAttr: 'href',
+      captionsData: 'alt',
+    });
   }
 }
 
