@@ -1,8 +1,8 @@
+import PixabayApi from './api.js';
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 
 import Notiflix from 'notiflix';
-import PixabayApi from './api.js';
 
 import { createCardsList } from './markup.js';
 
