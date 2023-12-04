@@ -113,41 +113,40 @@ const handleInfiniteScroll = () => {
   }
 };
 
-
 async function loadMoreImages(query) {
-    if (isLoading) return;
-    isLoading = true;
-  
-    // Show the loading spinner
-    const loadingSpinner = document.getElementById('loading-spinner');
-    loadingSpinner.style.display = 'block';
-  
-    try {
-      imagesData = await pixabayApi.getImages(query, pixabayApi.queryPage);
-  
-      if (!imagesData || imagesData.hits.length === 0) {
-        Notiflix.Notify.failure(
-          'Sorry, there are no images matching your search query. Please try again.'
-        );
-        return;
-      }
-      const markup = createCardsList(imagesData.hits);
-      updateImagesList(markup);
-      totalImagesDisplayed += imagesData.hits.length;
-      pixabayApi.incrementPage();
-      if (totalImagesDisplayed >= imagesData.totalHits) {
-        Notiflix.Notify.info(
-          "We're sorry, but you've reached the end of search results."
-        );
-        window.removeEventListener('scroll', handleInfiniteScroll);
-      } else {
-        showTotalHitsNotification(imagesData.totalHits);
-      }
-    } catch (error) {
-      onError(error);
-    } finally {
-      // Hide the loading spinner
-      loadingSpinner.style.display = 'none';
-      isLoading = false;
+  if (isLoading) return;
+  isLoading = true;
+
+  // Show the loading spinner
+  const loadingSpinner = document.getElementById('loading-spinner');
+  loadingSpinner.style.display = 'block';
+
+  try {
+    imagesData = await pixabayApi.getImages(query, pixabayApi.queryPage);
+
+    if (!imagesData || imagesData.hits.length === 0) {
+      Notiflix.Notify.failure(
+        'Sorry, there are no images matching your search query. Please try again.'
+      );
+      return;
     }
+    const markup = createCardsList(imagesData.hits);
+    updateImagesList(markup);
+    totalImagesDisplayed += imagesData.hits.length;
+    pixabayApi.incrementPage();
+    if (totalImagesDisplayed >= imagesData.totalHits) {
+      Notiflix.Notify.info(
+        "We're sorry, but you've reached the end of search results."
+      );
+      window.removeEventListener('scroll', handleInfiniteScroll);
+    } else {
+      showTotalHitsNotification(imagesData.totalHits);
+    }
+  } catch (error) {
+    onError(error);
+  } finally {
+    // Hide the loading spinner
+    loadingSpinner.style.display = 'none';
+    isLoading = false;
   }
+}
